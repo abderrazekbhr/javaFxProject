@@ -12,6 +12,9 @@ public class HelloApplication extends Application {
     public void init() throws Exception {
         System.out.println("init() method called");
     }
+    public void stop() throws Exception {
+        System.out.println("stop() method called");
+    }
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
