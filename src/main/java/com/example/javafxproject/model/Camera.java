@@ -36,4 +36,5 @@ public class Camera {
             ", y=" + y +
             '}';
     }
+
 }
