@@ -3,11 +3,12 @@ package com.example.javafxproject.model;
 import javafx.geometry.Rectangle2D;
 
 public class Caracter extends StaticThing {
-    public final static double POS_INIT = 550;
+    public final static double POS_INIT = 100;
+    private static final double MAX_SPEED = 10;
     private static int lives = 3;
     private double Paperx = 85, Papery = 100, cpt = 0, cpt2 = 0, Etat = 0;
     private boolean vulnerable = true;
-    private double xHeroPosition = GameScene.WIDTH / 2,
+    private double xHeroPosition = 10,
             yHeroPosition = 200,
             xHeroSpeed,
             yHeroSpeed,
@@ -79,13 +80,13 @@ public class Caracter extends StaticThing {
 
     @Override
     public void update() {
-        final double AG = 0.5;
-        yHeroSpeed += yHeroAcceleration + AG;
+        final double AG = 1;
+        yHeroSpeed = yHeroAcceleration + AG;
         yHeroPosition += yHeroSpeed;
-        xHeroSpeed += xHeroAcceleration;
-        xHeroSpeed = xHeroSpeed * 0.999;
-        if (xHeroSpeed * xHeroAcceleration < 0) {
-            xHeroSpeed = xHeroSpeed * 0.99;
+        if (xHeroSpeed > MAX_SPEED) {
+            xHeroSpeed = MAX_SPEED;
+        } else {
+            xHeroSpeed += xHeroAcceleration;
         }
         xHeroPosition += xHeroSpeed;
         if (yHeroPosition > GameScene.POS_INIT) {

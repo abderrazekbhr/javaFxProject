@@ -58,7 +58,7 @@ public class Camera {
             double xHeroPosition,
             double yHeroAcceleration,
             double yHeroPosition) {
-        xCamSpeed += (-xCamSpeed + xHeroSpeed) / 50;
+        xCamSpeed += (-xCamSpeed + xHeroSpeed) / 10;
         double position = (xHeroPosition - xCamPosition) / GameScene.WIDTH;
         xCamPosition += abs(position - 0.5) * (-xCamPosition + xHeroPosition - GameScene.POS_INIT) * 4.0 / 50;
         yCamAcceleration += (-yCamAcceleration + yHeroAcceleration) / 4;
@@ -66,10 +66,6 @@ public class Camera {
         xCamPosition += xCamSpeed;
         yCamSpeed += yCamAcceleration;
         yCamPosition += yCamSpeed;
-
-    }
-
-    private void deapth() {
 
     }
 

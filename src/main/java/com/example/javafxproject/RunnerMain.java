@@ -6,12 +6,14 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.property.FloatProperty;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -50,28 +52,21 @@ public class RunnerMain extends Application {
     }
 
     private void startAnimation(GameScene scene) {
+        final long baseTime = System.currentTimeMillis();
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(16), event -> {
-            handleMovement(scene);
+            long time = System.currentTimeMillis();
+            handleMovement(scene, baseTime, time);
             scene.render(); // Ensure scene updates visually after handling movement
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
-    private void handleMovement(GameScene scene) {
-        if (activeKeys.contains(KeyCode.LEFT)) {
-            System.out.println("LEFT key pressed");
-            scene.getHero().update();
-        }
-        if (activeKeys.contains(KeyCode.RIGHT)) {
-            System.out.println("RIGHT key pressed");
-        }
-        if (activeKeys.contains(KeyCode.UP)) {
-            System.out.println("UP key pressed");
-        }
-        if (activeKeys.contains(KeyCode.DOWN)) {
-            System.out.println("DOWN key pressed");
-        }
+    private void handleMovement(GameScene scene, final long baseTime, long time) {
+
+        float acceleration = (float) ((time - baseTime) / Math.pow(10, 6));
+        scene.getHero().setXHeroAcceleration(acceleration); // Reset acceleration
+        scene.render();
 
     }
 

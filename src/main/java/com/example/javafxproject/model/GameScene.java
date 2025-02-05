@@ -9,7 +9,6 @@ import javafx.scene.paint.Paint;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
-import java.util.Random;
 
 public class GameScene extends Scene {
     public static final String IMG_PATH = "src/main/resources/com/example/javafxproject/assets/";
